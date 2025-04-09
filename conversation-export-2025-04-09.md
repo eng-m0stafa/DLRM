@@ -176,25 +176,6 @@ def explain_anomalies(sample):
     shap.summary_plot(shap_values, sample, feature_names=numerical_features + list(categorical_features.keys()))
 ```
 
-**Key Enhancements:**
-
-1. **Temporal Integrity:**
-   - Time-based splitting preserves real-world data distribution
-   - Added temporal features (hour, day-of-week) for behavior patterns
-
-2. **Cyber-Physical Fusion:**
-   - Combined network features (`src_ip`, `protocol`) with physical sensors
-   - Dynamic embedding sizes based on feature cardinality (log2(n) + 1)
-
-3. **Production Readiness:**
-   - Full pipeline serialization with joblib
-   - Automatic class balancing using inverse class frequencies
-   - SHAP-based explainability for security audits
-
-4. **Performance Optimization:**
-   - Batch size 1024 for efficient training on temporal data
-   - Adaptive learning rate with ReduceLROnPlateau
-   - Early stopping with best weights restoration
 
 **Usage:**
 
@@ -210,9 +191,3 @@ predictions = detect_anomalies(new_data)
 explain_anomalies(test.sample(100))  # Sample 100 suspicious events
 ```
 
-**Monitoring Suggestions:**
-1. Track precision/recall drift weekly
-2. Retrain when F1-score drops below 0.9
-3. Monitor embedding spaces for concept drift
-
-This implementation properly handles the temporal nature of smart home data while leveraging DLRM's strength in combining heterogeneous features through embedding-based interactions.
